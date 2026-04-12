@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Windows / WSL Zone Identifiers
+# Esses arquivos são metadados que o Windows cria ao baixar arquivos ou movê-los
+*:Zone.Identifier
+
+# Ambientes virtuais (altamente recomendado)
+venv/
+env/
+.env
+
+# IDEs (opcional, mas útil)
+.vscode/
+.idea/
