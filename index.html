@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" dir="ltr" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,8 +99,52 @@
         }
 
         /* Lógica de exibição */
-        html[lang="en"] .lang-pt { display: none !important; }
-        html[lang="pt"] .lang-en { display: none !important; }
+        html[lang="en"] .lang-pt,
+        html[lang="en"] .lang-he { display: none !important; }
+
+        html[lang="pt"] .lang-en,
+        html[lang="pt"] .lang-he { display: none !important; }
+
+        html[lang="he"] .lang-en,
+        html[lang="he"] .lang-pt { display: none !important; }
+
+        html[lang="he"] body {
+            direction: rtl;
+        }
+
+        html[lang="he"] .lang-switcher {
+            direction: ltr;
+        }
+
+/* MODAL SONIC */
+    #sonicModal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background: rgba(0,0,0,0.85);
+        justify-content: center;
+        align-items: center;
+    }
+
+    #sonicModal img {
+        max-width: 90%;
+        max-height: 85%;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        animation: zoomIn 0.25s ease;
+    }
+
+    @keyframes zoomIn {
+        from {
+            transform: scale(0.85);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
     </style>
 </head>
 <body>
@@ -115,17 +159,17 @@
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" href="#about">
-                            <span class="lang-en">About</span><span class="lang-pt">Sobre</span>
+                            <span class="lang-en">About</span><span class="lang-pt">Sobre</span><span class="lang-he">אודות</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#projects">
-                            <span class="lang-en">Projects</span><span class="lang-pt">Projetos</span>
+                            <span class="lang-en">Projects</span><span class="lang-pt">Projetos</span><span class="lang-he">פרויקטים</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#interests">
-                            <span class="lang-en">Interests</span><span class="lang-pt">Interesses</span>
+                            <span class="lang-en">Interests</span><span class="lang-pt">Interesses</span><span class="lang-he">תחומי עניין</span>
                         </a>
                     </li>
 
@@ -133,12 +177,13 @@
                         <div class="lang-switcher">
                             <button class="lang-btn active" onclick="setLang('en')" id="en-btn">EN</button>
                             <button class="lang-btn" onclick="setLang('pt')" id="pt-btn">PT</button>
+                            <button class="lang-btn" onclick="setLang('he')" id="he-btn">HE</button>
                         </div>
                     </li>
 
                     <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
                         <button class="btn btn-outline-secondary btn-sm" id="themeToggle" style="border-radius: 20px; font-size: 0.75rem;">
-                            <span class="lang-en">Switch Theme</span><span class="lang-pt">Mudar Tema</span>
+                            <span class="lang-en">Switch Theme</span><span class="lang-pt">Mudar Tema</span><span class="lang-he">החלפת ערכת נושא</span>
                         </button>
                     </li>
                 </ul>
@@ -151,30 +196,31 @@
             <div class="row">
                 <div class="col-md-8 order-2 order-md-1">
                     <h2 class="mb-4">
-                        <span class="lang-en">About Me</span><span class="lang-pt">Sobre Mim</span>
+                        <span class="lang-en">About Me</span><span class="lang-pt">Sobre Mim</span><span class="lang-he">אודותיי</span>
                     </h2>
                     <div class="lead mb-5" style="text-align: justify;">
                         <span class="lang-en">I am a physician graduated from Escola Paulista de Medicina - UNIFESP. Between 2021 and 2023, I conducted research at the Department of Nutrition Physiology, focusing on adipose tissue browning, supported by a FAPESP scholarship. In 2023, I served as president of the Sexually Transmitted Infections Combat Service (SCIST - EPM). I have been an active member of the Academic Leagues of Reproduction and Obstetric Assistance and directed several university extension projects, including the Brazilian International Congress for Medical Students (BRAINCOMS) and the Extension Department of the Associação Atlética Acadêmica Pereira Barretto (AAAPB). My clinical experience includes extracurricular internships in Intensive Cardiology at the University of Belgrade and Sexual Health and Reproductive Rights at the Universities of Lisbon and Porto.</span>
                         <span class="lang-pt">Sou médica formada pela Escola Paulista de Medicina - UNIFESP. Entre 2021 e 2023, realizei pesquisa no Departamento de Fisiologia da Nutrição, focando no <i>browning</i> do tecido adiposo, com apoio de bolsa FAPESP. Em 2023, fui presidente do Serviço de Combate às Infecções Sexualmente Transmissíveis (SCIST - EPM). Fui membro ativa das Ligas Acadêmicas de Reprodução e Assistência Obstétrica e dirigi diversos projetos de extensão universitária, incluindo o Brazilian International Congress for Medical Students (BRAINCOMS) e o Departamento de Extensão da Associação Atlética Acadêmica Pereira Barretto (AAAPB). Minha experiência clínica inclui estágios extracurriculares em Cardiologia Intensiva na Universidade de Belgrado e em Saúde Sexual e Direitos Reprodutivos nas Universidades de Lisboa e do Porto.</span>
+                        <span class="lang-he">אני רופאה בוגרת Escola Paulista de Medicina - UNIFESP. בין השנים 2021 ל-2023 ערכתי מחקר במחלקה לפיזיולוגיית התזונה, עם דגש על browning של רקמת שומן, בתמיכת מלגת FAPESP. בשנת 2023 כיהנתי כנשיאת שירות המאבק במחלות המועברות במגע מיני (SCIST - EPM). הייתי חברה פעילה בליגות האקדמיות לרבייה ולסיוע מיילדותי, והובלתי כמה פרויקטי הרחבה אוניברסיטאיים, כולל Brazilian International Congress for Medical Students (BRAINCOMS) ומחלקת ההרחבה של Associação Atlética Acadêmica Pereira Barretto (AAAPB). הניסיון הקליני שלי כולל התמחויות חוץ־לימודיות בקרדיולוגיה אינטנסיבית באוניברסיטת בלגרד ובבריאות מינית וזכויות רבייה באוניברסיטאות ליסבון ופורטו.</span>
                     </div>
 
                     <div class="contact-card">
                         <div class="row align-items-center text-center text-sm-start">
                             <div class="col-lg-3 col-12 mb-3 mb-lg-0">
                                 <h6 class="text-uppercase fw-bold m-0 contact-title">
-                                    <span class="lang-en">Contact Information</span><span class="lang-pt">Informações de Contato</span>
+                                    <span class="lang-en">Contact Information</span><span class="lang-pt">Informações de Contato</span><span class="lang-he">פרטי קשר</span>
                                 </h6>
                             </div>
                             <div class="col-lg-3 col-sm-4 mb-2 mb-sm-0">
-                                <small class="text-muted d-block text-uppercase fw-semibold" style="font-size: 0.65rem;">Email</small>
+                                <small class="text-muted d-block text-uppercase fw-semibold" style="font-size: 0.65rem;"><span class="lang-en">Email</span><span class="lang-pt">Email</span><span class="lang-he">אימייל</span></small>
                                 <a href="mailto:mwertzner@unifesp.br" class="contact-link">mwertzner@unifesp.br</a>
                             </div>
                             <div class="col-lg-3 col-sm-4 mb-2 mb-sm-0">
-                                <small class="text-muted d-block text-uppercase fw-semibold" style="font-size: 0.65rem;">LinkedIn</small>
+                                <small class="text-muted d-block text-uppercase fw-semibold" style="font-size: 0.65rem;"><span class="lang-en">LinkedIn</span><span class="lang-pt">LinkedIn</span><span class="lang-he">לינקדאין</span></small>
                                 <a href="https://www.linkedin.com/in/mariana-rosental-wertzner-6b1851155/" target="_blank" class="contact-link">m-rosental-wertzner</a>
                             </div>
                             <div class="col-lg-3 col-sm-4">
-                                <small class="text-muted d-block text-uppercase fw-semibold" style="font-size: 0.65rem;">Instagram</small>
+                                <small class="text-muted d-block text-uppercase fw-semibold" style="font-size: 0.65rem;"><span class="lang-en">Instagram</span><span class="lang-pt">Instagram</span><span class="lang-he">אינסטגרם</span></small>
                                 <a href="https://instagram.com/mariwertzner" target="_blank" class="contact-link">@mariwertzner</a>
                             </div>
                         </div>
@@ -185,7 +231,7 @@
                     <figure class="figure">
                         <img src="static/me.jpg" class="figure-img img-fluid rounded shadow profile-img" alt="Mariana Rosental Wertzner">
                         <figcaption class="figure-caption mt-2">
-                            <span class="lang-en">me in 2023 =)</span><span class="lang-pt">eu em 2023 =)</span>
+                            <span class="lang-en">me in 2023 =)</span><span class="lang-pt">eu em 2023 =)</span><span class="lang-he">אני ב-2023 =)</span>
                         </figcaption>
                     </figure>
                 </div>
@@ -194,7 +240,7 @@
 
         <section id="projects">
             <h2 class="mb-4">
-                <span class="lang-en">Projects & Research</span><span class="lang-pt">Projetos & Pesquisa</span>
+                <span class="lang-en">Projects & Research</span><span class="lang-pt">Projetos & Pesquisa</span><span class="lang-he">פרויקטים ומחקר</span>
             </h2>
             <div class="ms-2">
                 <ul class="list-unstyled">
@@ -206,23 +252,25 @@
                             <strong>
                                 <span class="lang-en">FAPESP Grant (Scientific Initiation)</span>
                                 <span class="lang-pt">Bolsa FAPESP (Iniciação Científica)</span>
-                            </strong> | Process: 22/05460-9 <br>
+                                <span class="lang-he">מלגת FAPESP (הכשרה מדעית)</span>
+                            </strong> | <span class="lang-en">Process</span><span class="lang-pt">Processo</span><span class="lang-he">תהליך</span>: 22/05460-9 <br>
                             <em>Nov 2022 – Oct 2023</em>
                         </div>
                         <p class="lead mb-3" style="font-size: 1rem; text-align: justify;">
                             <span class="lang-en">This research aimed to investigate the anti-obesogenic mechanisms of <em>Ginkgo biloba</em> extract (EGb), specifically evaluating its potential to induce "browning" in white adipose tissue. Using Western Blotting techniques, we analyzed the protein levels of UCP-1, PPARγ, and PGC-1α. The project also included in vitro characterization using the hWA41 immortalized human pre-adipocyte line to observe morphofunctional changes and metabolic remodeling.</span>
                             <span class="lang-pt">Esta pesquisa visou investigar os mecanismos anti-obesogênicos do extrato de <em>Ginkgo biloba</em> (EGb), especificamente avaliando seu potencial em induzir o "browning" no tecido adiposo branco. Utilizando técnicas de Western Blotting, analisamos os níveis proteicos de UCP-1, PPARγ e PGC-1α. O projeto também incluiu caracterização in vitro utilizando a linhagem de pré-adipócitos humanos imortalizados hWA41 para observar mudanças morfofuncionais e remodelamento metabólico.</span>
+                            <span class="lang-he">מחקר זה נועד לבחון את המנגנונים האנטי-השמנתיים של תמצית <em>Ginkgo biloba</em> (EGb), ובפרט להעריך את יכולתה לעודד "browning" ברקמת שומן לבנה. באמצעות טכניקות Western Blotting ניתחנו את רמות החלבונים UCP-1, PPARγ ו-PGC-1α. הפרויקט כלל גם אפיון in vitro באמצעות קו תאי קדם-אדיפוציטים אנושיים מונצחים hWA41, כדי לבחון שינויים מורפופונקציונליים ושינוי מטבולי.</span>
                         </p>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge text-bg-secondary fw-normal">Browning</span>
                             <span class="badge text-bg-secondary fw-normal">
-                                <span class="lang-en">Bioactive Compounds</span><span class="lang-pt">Compostos Bioativos</span>
+                                <span class="lang-en">Bioactive Compounds</span><span class="lang-pt">Compostos Bioativos</span><span class="lang-he">תרכובות ביואקטיביות</span>
                             </span>
                             <span class="badge text-bg-secondary fw-normal">
-                                <span class="lang-en">Obesity</span><span class="lang-pt">Obesidade</span>
+                                <span class="lang-en">Obesity</span><span class="lang-pt">Obesidade</span><span class="lang-he">השמנת יתר</span>
                             </span>
                             <span class="badge text-bg-secondary fw-normal">
-                                <span class="lang-en">Nutrition Physiology</span><span class="lang-pt">Fisiologia da Nutrição</span>
+                                <span class="lang-en">Nutrition Physiology</span><span class="lang-pt">Fisiologia da Nutrição</span><span class="lang-he">פיזיולוגיית התזונה</span>
                             </span>
                         </div>
                         <div class="mt-3">
@@ -230,6 +278,7 @@
                                target="_blank" class="text-decoration-none small fw-bold">
                                 <span class="lang-en">View Official Details</span>
                                 <span class="lang-pt">Ver Detalhes Oficiais</span>
+                                <span class="lang-he">צפייה בפרטים הרשמיים</span>
                             </a>
                         </div>
                     </li>
@@ -241,17 +290,18 @@
             <div class="row g-5">
                 <div class="col-md-6">
                     <h2 class="h4 mb-4 pb-2 border-bottom fw-bold text-uppercase" style="letter-spacing: 1px;">
-                        <span class="lang-en">Interests</span><span class="lang-pt">Interesses</span>
+                        <span class="lang-en">Interests</span><span class="lang-pt">Interesses</span><span class="lang-he">תחומי עניין</span>
                     </h2>
                     <ul class="list-unstyled">
                         <li class="mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="me-3 text-muted" style="font-size: 0.8rem;">●</span> 
-                                <span><strong><span class="lang-en">Medicine</span><span class="lang-pt">Medicina</span></strong></span>
+                                <span><strong><span class="lang-en">Medicine</span><span class="lang-pt">Medicina</span><span class="lang-he">רפואה</span></strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
                                 <span class="lang-en">- Clinical focus on Gynecology and Women's Health.</span>
                                 <span class="lang-pt">- Foco clínico em Ginecologia e Saúde da Mulher.</span>
+                                <span class="lang-he">- דגש קליני בגינקולוגיה וברפואת נשים.</span>
                             </div>
                         </li>
                         <li class="mb-3">
@@ -260,36 +310,42 @@
                                 <span><strong>Sudoku</strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
-                                <span class="lang-en">- When I'm bored :)</span><span class="lang-pt">- Quando estou entediada :)</span>
+                                <span class="lang-en">- When I'm bored :)</span><span class="lang-pt">- Quando estou entediada :)</span><span class="lang-he">- כשמשעמם לי :)</span>
                             </div>
                         </li>
                         <li class="mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="me-3 text-muted" style="font-size: 0.8rem;">●</span> 
-                                <span><strong>Vitor Gava</strong></span>
+                                <span id="vitorTrigger"><strong>Vitor Gava</strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
-                                <span class="lang-en">- Astonishingly charming guy</span><span class="lang-pt">- Um cara incrivelmente charmoso</span>
+                                <span class="lang-en">- Astonishingly charming guy</span><span class="lang-pt">- Um cara incrivelmente charmoso</span><span class="lang-he">- בחור מקסים להפליא</span>
+                            </div>
+                                <!-- MODAL -->
+                            <div id="sonicModal">
+                                <img src="static/sonic.webp" alt="Sonic">
                             </div>
                         </li>
                         <li class="mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="me-3 text-muted" style="font-size: 0.8rem;">●</span> 
-                                <span><strong><span class="lang-en">Truffaut's Cinema</span><span class="lang-pt">Cinema de Truffaut</span></strong></span>
+                                <span><strong><span class="lang-en">Truffaut's Cinema</span><span class="lang-pt">Cinema de Truffaut</span><span class="lang-he">הקולנוע של טריפו</span></strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
                                 <span class="lang-en">- Especially <i>The 400 Blows</i> (my favorite film)</span>
                                 <span class="lang-pt">- Especialmente <i>Os Incompreendidos</i> (meu filme favorito)</span>
+                                <span class="lang-he">- במיוחד <i>400 המהלומות</i> (הסרט האהוב עליי)</span>
                             </div>
                         </li>
                         <li class="mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="me-3 text-muted" style="font-size: 0.8rem;">●</span> 
-                                <span><strong><span class="lang-en">Algebraic Topology</span><span class="lang-pt">Topologia Algébrica</span></strong></span>
+                                <span><strong><span class="lang-en">Algebraic Topology</span><span class="lang-pt">Topologia Algébrica</span><span class="lang-he">טופולוגיה אלגברית</span></strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
                                 <span class="lang-en">- Particularly the <i>Möbius strip</i> and its presence in Lacan's work</span>
                                 <span class="lang-pt">- Particularmente a <i>Fita de Möbius</i> e sua presença na obra de Lacan</span>
+                                <span class="lang-he">- במיוחד רצועת <i>מוביוס</i> ונוכחותה ביצירתו של לאקאן</span>
                             </div>
                         </li>
                     </ul>
@@ -297,7 +353,7 @@
 
                 <div class="col-md-6">
                     <h2 class="h4 mb-4 pb-2 border-bottom fw-bold text-uppercase" style="letter-spacing: 1px;">
-                        <span class="lang-en">Dislikes</span><span class="lang-pt">Não Gosto</span>
+                        <span class="lang-en">Dislikes</span><span class="lang-pt">Não Gosto</span><span class="lang-he">דברים שאני לא אוהבת</span>
                     </h2>
                     <ul class="list-unstyled">
                         <li class="mb-3">
@@ -306,25 +362,25 @@
                                 <span><strong>Godard</strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
-                                <span class="lang-en">- Too pretentious</span><span class="lang-pt">- Pretensioso demais</span>
+                                <span class="lang-en">- Too pretentious</span><span class="lang-pt">- Pretensioso demais</span><span class="lang-he">- יומרני מדי</span>
                             </div>
                         </li>
                         <li class="mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="me-3 text-muted" style="font-size: 0.8rem;">○</span> 
-                                <span><strong><span class="lang-en">Parking</span><span class="lang-pt">Estacionar</span></strong></span>
+                                <span><strong><span class="lang-en">Parking</span><span class="lang-pt">Estacionar</span><span class="lang-he">חניה</span></strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
-                                <span class="lang-en">- No need to elaborate</span><span class="lang-pt">- Não precisa de explicação</span>
+                                <span class="lang-en">- No need to elaborate</span><span class="lang-pt">- Não precisa de explicação</span><span class="lang-he">- אין צורך להרחיב</span>
                             </div>
                         </li>
                         <li class="mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="me-3 text-muted" style="font-size: 0.8rem;">○</span> 
-                                <span><strong><span class="lang-en">Sectional poke eaters</span><span class="lang-pt">Comedores de poke por seção</span></strong></span>
+                                <span><strong><span class="lang-en">Sectional poke eaters</span><span class="lang-pt">Comedores de poke por seção</span><span class="lang-he">אוכלי פוקי לפי חלקים</span></strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
-                                <span class="lang-en">- Poke is meant to be eaten mixed</span><span class="lang-pt">- Poke deve ser comido misturado</span>
+                                <span class="lang-en">- Poke is meant to be eaten mixed</span><span class="lang-pt">- Poke deve ser comido misturado</span><span class="lang-he">- פוקי אמור להיאכל מעורבב</span>
                             </div>
                         </li>
                         <li class="mb-3">
@@ -333,7 +389,7 @@
                                 <span><strong>Beatles</strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
-                                <span class="lang-en">- Overestimated in my opinion</span><span class="lang-pt">- Superestimados na minha opinião</span>
+                                <span class="lang-en">- Overestimated in my opinion</span><span class="lang-pt">- Superestimados na minha opinião</span><span class="lang-he">- מוערכים יתר על המידה לדעתי</span>
                             </div>
                         </li>
                         <li class="mb-3">
@@ -342,7 +398,7 @@
                                 <span><strong>Ricardo Nunes</strong></span>
                             </div>
                             <div class="ms-4 ps-1 text-muted small">
-                                <span class="lang-en">- And his stupidly expensive tunnel project</span><span class="lang-pt">- E seu projeto de túnel estupidamente caro</span>
+                                <span class="lang-en">- And his stupidly expensive tunnel project</span><span class="lang-pt">- E seu projeto de túnel estupidamente caro</span><span class="lang-he">- ופרויקט המנהרה היקר בצורה מטופשת שלו</span>
                             </div>
                         </li>
                     </ul>
@@ -355,7 +411,7 @@
         <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
             <span class="text-muted small">© 2026 Mariana R. Wertzner.</span>
             <span class="text-muted small">
-                <span class="lang-en">Written by</span><span class="lang-pt">Escrita por</span> 
+                <span class="lang-en">Written by</span><span class="lang-pt">Escrita por</span><span class="lang-he">נכתב על ידי</span> 
                 <strong class="text-decoration-none">
                     <a href="https://instagram.com/vitorvgava" target="_blank" class="contact-link">vitorvgava</a> :)
                 </strong>
@@ -363,9 +419,11 @@
         </div>
     </footer>
 
+
     <script>
         const btnTheme = document.getElementById('themeToggle');
         const html = document.documentElement;
+
         btnTheme.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-bs-theme');
             html.setAttribute('data-bs-theme', currentTheme === 'dark' ? 'light' : 'dark');
@@ -373,9 +431,29 @@
 
         function setLang(lang) {
             html.setAttribute('lang', lang);
+            html.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(lang + '-btn').classList.add('active');
         }
+            const trigger = document.getElementById("vitorTrigger");
+            const modal = document.getElementById("sonicModal");
+
+            // abrir
+            trigger.addEventListener("click", () => {
+                modal.style.display = "flex";
+            });
+
+            // fechar clicando fora
+            modal.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            // fechar com ESC
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    modal.style.display = "none";
+                }
+            });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
